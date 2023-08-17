@@ -45,3 +45,15 @@ def basket(request):
     }
 
     return render(request, 'market/basket.html', context=data)
+
+
+def product_details(request, product_id):
+    product = Product.objects.get(id=product_id)
+
+    data = {
+        'menu': menu,
+        'title': 'Описание товара',
+        'product': product,
+    }
+
+    return render(request, 'market/details.html', context=data)

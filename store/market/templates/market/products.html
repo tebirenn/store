@@ -33,7 +33,9 @@
             <div class="product--item">
                 <span class="product-category">Категория: {{ p.category.name }}</span>
                 <div class="product-info">
-                    <h3>{{ p.name }}</h3>
+                    <a href="{% url 'details' p.id %}">
+                        <h3>{{ p.name }}</h3>
+                    </a>
                     <div>
                         <p class="product-price">{{ p.price }} KZT</p>
                         <button class="to-shop-button">Добавить в корзину</button>
@@ -45,3 +47,4 @@
     </section>
 </body>
 </html>
+http://localhost:8000/market/products/3/

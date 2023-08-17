@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'market/css/details.css' %}">
+    <link rel="stylesheet" href="{% static 'market/css/header.css' %}">
+</head>
+<body>
+    <header>
+        {% for m in menu %}
+        <div>
+            <a href="{% url m.url %}">{{ m.title }}</a>
+        </div>
+        {% endfor %}
+    </header>
+
+    <section class="main">
+        <h1>Описание продукта</h1>
+
+        <span class="p-preinfo">
+            <p>№ {{ product.id }} | Категория: {{ product.category.name }}</p>
+        </span>
+
+        <div class="p-details">
+            <span>
+                <p><b>Название:</b></p>
+                <p>{{ product.name }}</p>
+            </span>
+            <span>
+                <p><b>Описание:</b></p>
+                <p>{{ product.description }}</p>
+            </span>
+            <span>
+                <p><b>Цена:</b></p>
+                <p>{{ product.price }} KZT</p>
+            </span>
+            <span>
+                <p><b>Срок годности:</b></p>
+                <p>{{ product.best_before_date }}</p>
+            </span>
+        </div>
+    </section>
+</body>
+</html>
