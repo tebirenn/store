@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Product, Category, Basket
+from .forms import *
 
 # Create your views here.
 
@@ -57,3 +58,23 @@ def product_details(request, product_id):
     }
 
     return render(request, 'market/details.html', context=data)
+
+
+def add_product(request):
+    if request.method == 'POST':
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            form_data = form.cleaned_data
+            Product.objects.create(name=form_data['name'], description=form_data['description'], price=form_data['price'], category=form_data['category'])
+            # Product.objects.create(**form_data)
+            return redirect('products')
+    else:
+        form = AddProductForm()
+
+    data = {
+        'menu': menu,
+        'title': 'Добавить новый продукт',
+        'form': form,
+    }
+
+    return render(request, 'market/add-product.html', context=data)
