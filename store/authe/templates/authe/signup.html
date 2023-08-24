@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+<body>
+    <form action="{% url 'authe:signup' %}" method="POST">
+        {% csrf_token %}
+
+        <input type="hidden" name="abc" value="qwerty">
+
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</body>
+</html>

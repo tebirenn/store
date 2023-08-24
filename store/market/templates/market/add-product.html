@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        {% for m in menu %}
+        {% for m in menu %} 
         <div>
             <a href="{% url m.url %}">{{ m.title }}</a>
         </div>
@@ -18,7 +18,7 @@
     </header>
 
     <section class="main">
-        <form action="{% url 'add' %}" method="POST">
+        <form action="{% url 'market:add' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Сохранить</button>

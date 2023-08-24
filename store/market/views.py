@@ -8,9 +8,9 @@ from .forms import *
 #     return HttpResponse(f'Текущий ID продукта: {product_id}.')
 
 menu = [
-    {'title': 'Home', 'url': 'home'},
-    {'title': 'Products list', 'url': 'products'},
-    {'title': 'Basket', 'url': 'basket'},
+    {'title': 'Home', 'url': 'market:home'},
+    {'title': 'Products list', 'url': 'market:products'},
+    {'title': 'Basket', 'url': 'market:basket'},
 ]
 
 def home(request):
@@ -31,6 +31,7 @@ def products(request):
         'title': 'Все продукты',
         'products': products,
         'categories': categories,
+        'category_id': 0,
     }
 
     return render(request, 'market/products.html', context=data)
@@ -62,12 +63,13 @@ def product_details(request, product_id):
 
 def add_product(request):
     if request.method == 'POST':
-        form = AddProductForm(request.POST)
+        form = AddProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form_data = form.cleaned_data
-            Product.objects.create(name=form_data['name'], description=form_data['description'], price=form_data['price'], category=form_data['category'])
+            form.save()
+            # form_data = form.cleaned_data
+            # Product.ob (name=form_data['name'], description=form_data['description'], price=form_data['price'], category=form_data['category'])
             # Product.objects.create(**form_data)
-            return redirect('products')
+            return redirect('market:products')
     else:
         form = AddProductForm()
 
@@ -78,3 +80,20 @@ def add_product(request):
     }
 
     return render(request, 'market/add-product.html', context=data)
+
+
+
+def category_products(request, category_id):
+    products = Product.objects.filter(category_id=category_id)
+    categories = Category.objects.all()
+
+    data = {
+        'products': products,
+        'categories': categories,
+        'menu': menu,
+        'title': 'Продукты',
+        'category_id': category_id
+    }
+
+    return render(request, 'market/products.html', context=data)
+

@@ -78,3 +78,8 @@
 .to-shop-button:hover {
     background-color: #5959ea;
 }
+
+.selected-ctgr {
+    font-weight: 700;
+    color: #8e4444 !important;
+}
