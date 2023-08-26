@@ -4,15 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'authe/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'authe/css/authe.css' %}">
 </head>
 <body>
-    <form action="{% url 'authe:signup' %}" method="POST">
-        {% csrf_token %}
+    <header>
+        {% for m in menu %}
+        <div>
+            <a href="{% url m.url %}">{{ m.title }}</a>
+        </div>
+        {% endfor %}
+    </header>
 
-        <input type="hidden" name="abc" value="qwerty">
+    <section class="authe-main">
+        <h1>Регистрация</h1>
 
-        <button type="submit">Зарегистрироваться</button>
-    </form>
+        <form action="" method="POST" class="authe-form">
+            {% csrf_token %}
+    
+            {{ form.as_p }}
+    
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </section>
+    
 </body>
 </html>
