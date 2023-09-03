@@ -52,9 +52,21 @@ class SignInUser(LoginView):
     
     
     def get_success_url(self):
-        return reverse_lazy('market:home')
+        return reverse_lazy('authe:profile')
     
 
 def signout_user(request):
     logout(request)
     return redirect('authe:signin')
+
+
+def profile(request):
+    if not request.user.is_authenticated:
+        return redirect('authe:signin')
+
+    data = {
+        'title': 'Профиль',
+        'menu': menu
+    }
+
+    return render(request, 'authe/profile.html', context=data)

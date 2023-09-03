@@ -13,4 +13,5 @@ urlpatterns = [
     path('basket/', views.basket, name='basket'),
     # path('add/', views.add_product, name='add'),
     path('add/', views.MarketAddProduct.as_view(), name='add'),
+    # path('edit/<int:product_id>', views.edit, name='edit'),
 ]

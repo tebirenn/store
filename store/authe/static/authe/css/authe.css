@@ -63,3 +63,42 @@
 .authe-form > ul {
     display: none;
 }
+
+
+
+.profile-main {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 50px 8%;
+    box-sizing: border-box;
+}
+.profile-main h1 {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+.profile-info p {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.profile-info {
+    margin-bottom: 30px;
+}
+
+
+.admin-links {
+    display: flex;
+    flex-direction: column;
+}
+.admin-links a {
+    text-decoration: none;
+    background-color: #a5c4f2;;
+    font-size: 18px;
+    padding: 5px 30px;
+    border-radius: 5px;
+    color: #000;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: center;
+}

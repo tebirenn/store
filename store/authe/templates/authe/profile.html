@@ -27,16 +27,30 @@
         </div>
     </header>
 
-    <section class="authe-main">
-        <h1>Регистрация</h1>
+    <section class="authe-main profile-main">
+        <h1>Профиль</h1>
 
-        <form action="" method="POST" class="authe-form">
-            {% csrf_token %}
-    
-            {{ form.as_p }}
-    
-            <button type="submit">Зарегистрироваться</button>
-        </form>
+        <div class="profile-info">
+            <p>
+                <b>Name: </b>
+                <span>{{ user.first_name }}</span>
+            </p>
+            <p>
+                <b>Surname: </b>
+                <span>{{ user.last_name }}</span>
+            </p>
+            <p>
+                <b>Email: </b>
+                <span>{{ user.email }}</span>
+            </p>
+        </div>
+
+        {% if request.user.is_superuser %}
+        <div class="admin-links">
+            <a href="{% url 'market:add' %}">Добавить новый продукт</a>
+            <a href="">Изменить продукт</a>
+        </div>
+        {% endif %}
     </section>
     
 </body>
